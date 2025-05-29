@@ -12,7 +12,7 @@ export const responseMessages = {
 
     ERROR_MESSAGES: 'Internal Server Error',
     EMAIL_VERIFY: "Email Verified Successfully",
-    EMPTY_URL_PARAMS: "Slug not found",
+    EMPTY_URL_PARAMS: "Param is empty",
     
     GET_SUCCESS_MESSAGES: 'Got Resource Successfully',
     GET_UNSUCCESS_MESSAGES: 'No resource found',
@@ -24,7 +24,7 @@ export const responseMessages = {
     INTERNAL_ERROR_MESSAGE: 'Something went wrong',
     INVALID_OTP: "Invalid OTP, try again",
     INVALID_TOKEN: "Unauthorized User, Invalid token",
-    INVALID_DATA: 'Invalid Credentials',
+    INVALID_DATA: 'Invalid Data',
     IMAGE_ERROR: 'image URL or path is missing',
     IMAGE_SUCCESS:'image upload sucessfully',
     

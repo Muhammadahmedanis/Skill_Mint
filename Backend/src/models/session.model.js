@@ -10,19 +10,19 @@ const sessionSchema = new mongoose.Schema({
         required: true,
     },
     experience: {
-        type: String,
+        type: Number,
         required: true,
     },
-    topicToFocus: {
+    topicsToFocus: {
         type: String,
         required: true,
     },
     description: String,
-    question: [{
+    questions: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Question",
     }],
 
 }, { timestamps: true})
 
-export const session = mongoose.model("Session", sessionSchema);
+export const Session = mongoose.model("Session", sessionSchema);

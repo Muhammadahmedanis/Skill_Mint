@@ -6,9 +6,10 @@ import cookieParser from "cookie-parser";
 // import mongoSanitize from "express-mongo-sanitize";
 import authRouter from "./routes/auth.routes.js";
 import { verifyJwt } from "./middlewares/authMiddleware.js";
-// import postRouter from "./routes/post.routes.js";
-// import commentRouter from "./routes/comment.routes.js";
-// import userRouter from "./routes/user.routes.js";
+import sessionRouter from "./routes/session.routes.js";
+import questionRouter from "./routes/question.routes.js";
+import { generateConceptExplanation, generateInterviewQuestion } from "./controllers/ai.controller.js";
+
 
 const app = express();
 // Middleware Configurations
@@ -33,10 +34,10 @@ app.get("/", (req, res) => {
 
 // Routes
 app.use("/api/v1/auth", authRouter);
-// app.use("/api/v1/session", sessionRouter);
-// app.use("/api/v1/question", questionRouter);
-// app.use("/api/v1/ai/generate-questions", verifyJwt, generateInterviewQuestion);
-// app.use("/api/v1/ai/generate-explanation", verifyJwt, generateConceptExplanation);
+app.use("/api/v1/session", sessionRouter);
+app.use("/api/v1/question", questionRouter);
+app.use("/api/v1/ai/generate-questions", verifyJwt, generateInterviewQuestion);
+app.use("/api/v1/ai/generate-explanation", verifyJwt, generateConceptExplanation);
 
 
 
