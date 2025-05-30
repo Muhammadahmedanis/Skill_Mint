@@ -111,7 +111,7 @@ export const signin = asyncHandler(async (req, res) => {
     .status(StatusCodes.OK)
     .cookie("accessToken", accessToken, options)
     .cookie("refreshToken", refreshToken, options)
-    .send(new ApiResponse(StatusCodes.OK, SUCCESS_LOGIN, loggedInusers, accessToken, refreshToken))
+    .send(new ApiResponse(StatusCodes.OK, SUCCESS_LOGIN, loggedInusers))
 });
 
 

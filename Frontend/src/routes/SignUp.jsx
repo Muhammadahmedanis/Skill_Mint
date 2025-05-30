@@ -6,11 +6,16 @@ import Input from '../components/Input';
 import Label from '../components/Label';
 import toast from 'react-hot-toast';
 import ProfilePic from '../components/ProfilePic';
+import { useUser } from '../Context/userContext';
+import { API_PATH } from '../utils/apiPath';
+import axiosInstance from '../utils/axios';
 
 function Signup({setCurrentPage}) {
   const navigate = useNavigate();
   const[passIcon, setPassIcon] = useState("password");
   const[profilePic, setProfilePic] = useState(null);
+  const { updateUser } = useUser();
+
   const handlePass = () => {
     if (passIcon === "password") {
       setPassIcon("text");
@@ -23,7 +28,6 @@ function Signup({setCurrentPage}) {
     const userName = formData.get("userName");
     const email = formData.get("email");
     const password = formData.get("password");
-    let profileImageUrl = "";
 
     if (!userName) {
         toast.error("Username is required");
@@ -44,8 +48,32 @@ function Signup({setCurrentPage}) {
         return null;
     }
 
-    const payload = { userName, email, password};
-    console.log(payload);
+    const formD = new FormData();
+    formD.append("userName", userName);
+    formD.append("email", email);
+    formD.append("password", password);
+
+    if(profilePic){
+      formD.append("profilePic", profilePic);
+    }
+    console.log(formD);
+    try {
+      const response = await axiosInstance.post(API_PATH.AUTH.SIGNUP, formD, {
+        headers: { "Content-Type": "multipart/form-data" }
+      });
+
+      if (!response?.data) {
+        toast.error("Something went wrong. No data received.");
+        return null;
+      }
+
+      updateUser(response.data);       
+      navigate("/dashboard");
+      toast.success(response.data.message);
+    } catch (error) {
+      console.error("Signup error:", error);
+      toast.error(error?.response?.data?.message || "Signup failed.");
+    }
 
   })
 
@@ -96,7 +124,7 @@ function Signup({setCurrentPage}) {
               type='submit'
               disabled={isPending}
               className="btn-primary">
-              { isPending ? <div className="w-7 h-7 border-4 border-t-blue-500 border-gray-300 rounded-full animate-spin"></div> : <div className='text-[17px] font-semibold'>Signup</div>} 
+              { isPending ? <div className="w-7 h-7 border-4 border-t-primary border-gray-300 rounded-full animate-spin"></div> : <div className='text-[17px] font-semibold'>Signup</div>} 
             </button>
             </form>
             <p className=''>Already have an account <button className='font-medium text-primary underline cursor-pointer' onClick={() => setCurrentPage("Login")}>Login</button> </p>

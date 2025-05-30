@@ -8,27 +8,30 @@ import SignUp from './routes/SignUp'
 import Dashboard  from './routes/Dashboard'
 import InterviewPrep from './routes/InterviewPrep'
 import { Toaster } from 'react-hot-toast'
+import UserProvider from './Context/userContext'
 
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
-      <Route path='/' element={''}>
-        <Route index element={ <Home/> } />
-        <Route path='/login' element={ <Login /> } />
-        <Route path='/signup' element={ <SignUp /> } />
-        <Route path='/dashbord' element={ <Dashboard /> } />
-        <Route path='interview-prep/:sessionId' element={ <InterviewPrep /> } />
-        <Route />
-      </Route>
+        <Route path='/' element={''}>
+          <Route index element={ <Home/> } />
+          <Route path='/login' element={ <Login /> } />
+          <Route path='/signup' element={ <SignUp /> } />
+          <Route path='/dashboard' element={ <Dashboard /> } />
+          <Route path='interview-prep/:sessionId' element={ <InterviewPrep /> } />
+          <Route />
+        </Route>
       </>
     )
   )
 
   return (
     <>
-      <RouterProvider router={router} />
-      <Toaster position="top-center" />
+      <UserProvider>
+        <RouterProvider router={router} />
+        <Toaster position="top-center" />
+      </UserProvider>
     </>
   )
 }

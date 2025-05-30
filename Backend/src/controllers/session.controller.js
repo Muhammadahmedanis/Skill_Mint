@@ -32,7 +32,7 @@ export const createSession = asyncHandler(async (req, res) => {
     })
 
     const questionDocs = await Promise.all(
-        questions.map(async (q) => {
+        questions?.map(async (q) => {
             const question = await Question.create({
                 session: session?._id,
                 question: q?.question,
@@ -60,7 +60,7 @@ export const getMySessions = asyncHandler(async (req, res) => {
     };
 
     const sessions = await Session.find({ user: userId })
-    .sort({ created: -1 })
+    .sort({ createdAt: -1 })
     .populate("questions");
     return res.status(StatusCodes.OK).send(new ApiResponse(StatusCodes.OK, '', sessions));
 });

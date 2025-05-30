@@ -6,15 +6,24 @@ import { FaHeart } from "react-icons/fa";
 import Login from './Login.jsx';
 import SignUp from './SignUp.jsx';
 import Modal from '../components/Modal.jsx';
+import { useUser } from '../Context/userContext.jsx';
+import ProfileInfoCard from '../components/ProfileInfoCard.jsx';
 
 function Home() {
   const navigate = useNavigate();
+  const { user, clearUser } = useUser();
+  
   const [openAuthModel, setOpenAuthModel] = useState(true);
   const [currentPage, setCurrentPage] = useState("Login");
 
   const handleCTA = () => {
-   setOpenAuthModel(!openAuthModel);
+    if(!user){
+      setOpenAuthModel(!openAuthModel);
+    }else{
+      navigate("/dashboard");
+    }
   };
+
 
   return (
     <>
@@ -25,11 +34,13 @@ function Home() {
           {/* Header */}
           <header className='flex justify-between items-center mb-10'>
             <div className='text-xl text-black font-bold'>Interview Prep AI</div>
+            {user ? 
+            <ProfileInfoCard /> : 
             <button
               onClick={() => setOpenAuthModel(!openAuthModel)}
               className='bg-gradient-to-r from-[#FF9324] to-[#e99a4b] hover:bg-black text-sm font-semibold text-white px-7 py-2.5 rounded-full hover:text-white border border-white transition-colors cursor-pointer'>
               Login / SignUp
-            </button>
+            </button>}
           </header>
 
           {/* Hero Section */}
