@@ -8,12 +8,14 @@ import SignUp from './SignUp.jsx';
 import Modal from '../components/Modal.jsx';
 import { useUser } from '../Context/userContext.jsx';
 import ProfileInfoCard from '../components/ProfileInfoCard.jsx';
+import Logo from "/logo.png";
+import bg from "/Capture.png";
 
 function Home() {
   const navigate = useNavigate();
   const { user, clearUser } = useUser();
   
-  const [openAuthModel, setOpenAuthModel] = useState(true);
+  const [openAuthModel, setOpenAuthModel] = useState(false);
   const [currentPage, setCurrentPage] = useState("Login");
 
   const handleCTA = () => {
@@ -33,7 +35,9 @@ function Home() {
         <div className='container mx-auto px-10 pt-6 pb-[50px] relative z-10'>
           {/* Header */}
           <header className='flex justify-between items-center mb-10'>
-            <div className='text-xl text-black font-bold'>Interview Prep AI</div>
+            <div className='text-xl text-black font-bold'>
+              <img src={Logo} alt="" className='h-15' />
+            </div>
             {user ? 
             <ProfileInfoCard /> : 
             <button
@@ -87,7 +91,7 @@ function Home() {
       <div className='w-full min-h-full relative z-10'>
         <div>
           <section className='flex items-center justify-center -mt-40'>
-            <img className='w-[80vw] rounded-lg' src="https://brianvanderwaal.com/wp-content/uploads/2024/11/Teal-Interview-Practice-Tool-1024x536.jpg" alt="" />
+            <img className='w-[80vw] rounded-lg' src={bg} alt="" />
           </section>
         </div>
       </div>

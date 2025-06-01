@@ -83,9 +83,6 @@ function Login({setCurrentPage}) {
                 </span>
                 <Input type={passIcon === "password" ? "password" : "text" } name="password" placeholder="Min 8 Characters" />
               </div>
-              {/* <Link to="/forgotPass" className="text-xs font-semibold absolute right-1 mt-2 mb-8 text-gray-500 dark:text-gray-300 hover:underline">
-                Forget Password?
-              </Link> */}
             </div>
             <button
               type='submit'

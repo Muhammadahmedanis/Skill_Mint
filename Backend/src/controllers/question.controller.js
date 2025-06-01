@@ -39,7 +39,7 @@ export const addQuestionsToSession = asyncHandler(async (req, res) => {
 
 
 // @desc   Pin or unpin a question
-// @route  POST  /api/v1/question/:id/pin
+// @route  PUT  /api/v1/question/:id/pin
 // @access Private
 
 export const togglePinQuestion = asyncHandler(async (req, res) => {
