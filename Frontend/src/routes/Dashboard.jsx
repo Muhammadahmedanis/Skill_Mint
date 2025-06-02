@@ -15,6 +15,7 @@ import DeleteAlertContent from '../components/DeleteAlertContent.jsx';
 function Dashboard() {
   const navigate = useNavigate();
   const[openCreateModal, setOpenCreateModal] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
   const[sessions, setSessions] = useState([]);
   const[openDeleteAlert, setOpenDeleteAlert] = useState({
     open: false,
@@ -84,6 +85,9 @@ function Dashboard() {
           <DeleteAlertContent content="Are you sure you want to delete this session" onDelete={() => deleteSession(openDeleteAlert.data)}  />
         </div>
       </Modal>
+
+
+      
 
     </DashboardLayout>
   )

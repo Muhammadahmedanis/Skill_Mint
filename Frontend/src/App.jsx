@@ -9,6 +9,7 @@ import Dashboard  from './routes/Dashboard'
 import InterviewPrep from './routes/InterviewPrep'
 import { Toaster } from 'react-hot-toast'
 import UserProvider from './Context/userContext'
+import Quiz from './components/Quiz'
 
 function App() {
   const router = createBrowserRouter(
@@ -20,6 +21,7 @@ function App() {
           <Route path='/signup' element={ <SignUp /> } />
           <Route path='/dashboard' element={ <Dashboard /> } />
           <Route path='interview-prep/:sessionId' element={ <InterviewPrep /> } />
+          <Route path='/quiz' element={<Quiz />} />
           <Route />
         </Route>
       </>
