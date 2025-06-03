@@ -9,6 +9,8 @@ export const API_PATH = {
     AI: {
         GENERATE_QUESTIONS: "/ai/generate-questions",
         GENERATE_EXPLANATION: "/ai/generate-explanation",
+        GENARATE_QUIZ_Q: "/ai/generate-quiz",
+        GENERATE_RESULTSUGGESTION: "/ai/submit-quiz" 
     },
     SESSION: {
         CREATE: "/session/create",
@@ -20,5 +22,8 @@ export const API_PATH = {
         ADD_TO_SESSION: "/question/add",
         PIN: (id) => `/question/${id}/pin`,
         UPDATE_NOTE: (id) => `question/note/${id}`
+    },
+    QUIZ: {
+        GET_RESULT: "/quiz",
     }
 }

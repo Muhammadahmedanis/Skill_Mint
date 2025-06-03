@@ -8,8 +8,8 @@ import axiosInstance from '../utils/axios';
 import { API_PATH } from '../utils/apiPath';
 
 function CreateSessionForm() {
-    const navigate = useNavigate();
-const [actionState, submitAction, isPending] = useActionState(async (_prevState, formData) => {
+  const navigate = useNavigate();
+  const [actionState, submitAction, isPending] = useActionState(async (_prevState, formData) => {
   const role = formData.get("role");
   const experience = formData.get("experience");
   const topicsToFocus = formData.get("topicsToFocus");
@@ -30,7 +30,7 @@ const [actionState, submitAction, isPending] = useActionState(async (_prevState,
 
     const aiResponse = await axiosInstance.post(API_PATH.AI.GENERATE_QUESTIONS, payload);
     const generatedQuestions = aiResponse?.data?.data;
-    // console.log(generatedQuestions);
+    console.log(generatedQuestions);
     
     const sessionPayload = {
       role,

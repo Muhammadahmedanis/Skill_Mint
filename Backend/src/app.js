@@ -8,7 +8,8 @@ import authRouter from "./routes/auth.routes.js";
 import { verifyJwt } from "./middlewares/authMiddleware.js";
 import sessionRouter from "./routes/session.routes.js";
 import questionRouter from "./routes/question.routes.js";
-import { generateConceptExplanation, generateInterviewQuestion } from "./controllers/ai.controller.js";
+import { generateConceptExplanation, generateInterviewQuestion, genrateQuiz, submitQuiz } from "./controllers/ai.controller.js";
+import quizRouter from "./routes/quiz.routes.js";
 
 
 const app = express();
@@ -36,8 +37,11 @@ app.get("/", (req, res) => {
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/session", sessionRouter);
 app.use("/api/v1/question", questionRouter);
+app.use("/api/v1/quiz", quizRouter);
 app.use("/api/v1/ai/generate-questions", verifyJwt, generateInterviewQuestion);
 app.use("/api/v1/ai/generate-explanation", verifyJwt, generateConceptExplanation);
+app.use("/api/v1/ai/generate-quiz", verifyJwt, genrateQuiz);
+app.use("/api/v1/ai/submit-quiz", verifyJwt, submitQuiz);
 
 
 

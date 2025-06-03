@@ -43,8 +43,6 @@ function InterviewPrep() {
       
       const response = await axiosInstance.post(API_PATH.AI.GENERATE_EXPLANATION, {question} );
       if(response.data?.data){
-        console.log(response.data?.data);
-        
         setExplanation(response.data?.data);
       }
     } catch (error) {

@@ -1,13 +1,16 @@
 import mongoose from "mongoose";
 
 const quizQSchema = new mongoose.Schema({
-    queston: {
+    question: {
         type: String,
         reuired: true,
     },
     options:{
         type: [String],
-        validate: [opt => opt.length >= 2, 'At least 2 options required'],
+        validate: {
+            validator: (opt) => opt.length >= 2,
+            message: 'At least 2 options are required.',
+        },
         reuired: true,
     },
     correctAnswer: {
@@ -17,9 +20,9 @@ const quizQSchema = new mongoose.Schema({
 })
 
 const quizScehema = new mongoose.Schema({
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
+    userId: {
+        type: String,
+        required: true,
     },
     topicName: {
         type: String,
@@ -31,12 +34,11 @@ const quizScehema = new mongoose.Schema({
     },
     Score: {
         type: Number,
-        default: 0.
+        default: 0,
     },
     suggestion:[
         {
           type: String
-
         }
     ]
 
